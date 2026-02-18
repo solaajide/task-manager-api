@@ -21,6 +21,5 @@ GET api/tasks/<id>/     Retrieve task by id
 PUT api/tasks/<id>/     Update task by id
 DELETE api/tasks/<id>/  Delete task by id
 
-## Status
-Version 0.1 — Core API endpoints implemented. Authentication coming next.
+
 
