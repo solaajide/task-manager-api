@@ -5,11 +5,13 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserRegistrationSerializer
+from rest_framework.permissions import AllowAny
+
 # Create your views here.
 
 class UserRegistrationView(generics.GenericAPIView):
     serializer_class = UserRegistrationSerializer
-    
+    permission_classes = [AllowAny]
     def post(self, request:Request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -23,6 +25,7 @@ class UserRegistrationView(generics.GenericAPIView):
     
 
 class UserLoginView(generics.GenericAPIView):
+    permission_classes = [AllowAny]
     
     def post(self, request:Request):
         username = request.data.get('username')
