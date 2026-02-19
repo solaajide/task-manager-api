@@ -48,6 +48,12 @@ class TaskRetrieveUpdateDeleteView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    def patch(self, request:Request, id):
+        task = self.get_object(id, request.user)
+        task.completed = not task.completed
+        task.save()
+        return Response({"Message":"Task Updated"}, status=status.HTTP_200_OK)
+    
     def delete(self, request:Request, id=int):
         task = get_object_or_404(Task, id=id, user=request.user)
         task.delete()
